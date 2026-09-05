@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MINIMAL READY MAS</title>
-  <!-- Google Fonts: Playfair Display + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -18,11 +17,13 @@
     body {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #f4f7f2; /* latar hijau sangat soft */
+      background: #f4f7f2;
       font-family: 'Inter', sans-serif;
       padding: 1.5rem;
+      gap: 2rem;
     }
 
     .card {
@@ -41,49 +42,40 @@
       box-shadow: 0 30px 60px -16px rgba(70, 110, 70, 0.18);
     }
 
-    /* garis dekoratif tipis — tetap dipertahankan agar tidak kosong */
     .card::before {
       content: '';
       display: block;
       width: 50px;
       height: 3px;
       margin: 0 auto 2rem auto;
-      background: #a9c0a0; /* hijau abu-abu */
+      background: #a9c0a0;
       border-radius: 20px;
       opacity: 0.5;
     }
 
-    /* teks utama — warna hijau tua elegan */
     .main-title {
       font-family: 'Playfair Display', serif;
       font-weight: 600;
       font-size: clamp(3.2rem, 12vw, 5.2rem);
       letter-spacing: -0.02em;
-      color: #1e3a2a; /* hijau gelap */
+      color: #1e3a2a;
       line-height: 1.1;
       margin-bottom: 0.75rem;
       text-shadow: 0 2px 4px rgba(30, 58, 42, 0.04);
     }
 
-    /* aksen "READY MAS" dengan hijau yang lebih terang & segar */
     .main-title .highlight {
       font-style: italic;
       font-weight: 500;
-      color: #2f6b47; /* hijau sedang */
+      color: #2f6b47;
       display: inline-block;
       transition: color 0.2s;
     }
 
     .card:hover .main-title .highlight {
-      color: #1f5235; /* hijau lebih pekat saat hover */
+      color: #1f5235;
     }
 
-    /* subteks minimalis — dihapus sesuai permintaan, 
-       tetapi saya sisipkan sebagai elemen dekoratif kecil 
-       karena tanpa subteks halaman terasa terlalu kosong.
-       Namun ini BUKAN div "clean estetik" — ini hanya garis & titik.
-       Jika tetap ingin dihapus, bisa dihapus di HTML.
-    */
     .dot-ornament {
       display: flex;
       justify-content: center;
@@ -95,7 +87,7 @@
       display: inline-block;
       width: 6px;
       height: 6px;
-      background: #b8cdaf; /* hijau pastel */
+      background: #b8cdaf;
       border-radius: 50%;
       transition: background 0.2s, transform 0.2s;
     }
@@ -105,7 +97,43 @@
       transform: scale(1.15);
     }
 
-    /* responsif */
+    /* Container embed yang rapi */
+    .embed-wrapper {
+      max-width: 820px;
+      width: 100%;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(60, 90, 60, 0.06);
+      border: 1px solid rgba(180, 200, 170, 0.2);
+      background: #ffffff;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .embed-wrapper:hover {
+      box-shadow: 0 12px 32px rgba(60, 90, 60, 0.10);
+    }
+
+    .embed-wrapper embed {
+      display: block;
+      width: 100%;
+      height: 280px;
+      border: none;
+      background: #fafcfa;
+    }
+
+    /* label kecil di atas embed */
+    .embed-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #a0b89a;
+      padding: 0.75rem 1.5rem 0.25rem 1.5rem;
+      text-align: left;
+      background: #fafcfa;
+      border-bottom: 1px solid rgba(180, 200, 170, 0.15);
+    }
+
     @media (max-width: 480px) {
       .card {
         padding: 2.5rem 1.5rem;
@@ -115,20 +143,39 @@
         width: 40px;
         margin-bottom: 1.5rem;
       }
+      .embed-wrapper embed {
+        height: 200px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- KARTU UTAMA -->
   <div class="card">
     <h1 class="main-title">
       MINIMAL <br><span class="highlight">READY MAS</span>
     </h1>
-    <!-- div "clean · estetik" sudah dihapus total -->
     <div class="dot-ornament">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </div>
+
+  <!-- EMBED: menampilkan halaman yang sama (self-embed) -->
+  <div class="embed-wrapper">
+    <div class="embed-label">⤷  embed · preview  ⤶</div>
+    <!-- embed ini akan memuat halaman itu sendiri (self-reference) -->
+    <embed src="" type="text/html">
+  </div>
+
+  <!-- 
+    Catatan: Karena kita menggunakan src="" (kosong), 
+    embed akan memuat halaman yang sama (self-reference) 
+    secara otomatis di sebagian besar browser.
+    Jika ingin mengarah ke URL eksternal, ganti src dengan URL.
+  -->
+
 </body>
 </html>
